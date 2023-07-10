@@ -57,9 +57,8 @@ def get_user_movies(user_id):
 def add_user():
     if request.method == 'POST':
         try:
-            user_id = request.form['user_id']
             username = request.form['username']
-            user = {'id': user_id, 'username': username, 'movies': []}
+            user = {'username': username, 'movies': []}
             data_manager.add_user(user)
             return redirect(url_for('list_users'))
         except Exception as e:

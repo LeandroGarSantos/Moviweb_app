@@ -29,8 +29,12 @@ class JSONDataManager:
         return []
 
     # Add more methods as needed
+    user_counter = 1
 
     def add_user(self, user):
+        user['id'] = str(JSONDataManager.user_counter)
+        JSONDataManager.user_counter += 1
+
         self.load_data()
         self.data.append(user)
         self.save_data(user["id"])
