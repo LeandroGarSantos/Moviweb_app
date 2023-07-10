@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies - MovieWeb App</title>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+    <h1>Movies</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie['Title'] }} - Rating: {{ movie['Rated'] }} - Movie Poster: <img src="{{ movie['Poster'] }}" alt="Movie Poster"></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

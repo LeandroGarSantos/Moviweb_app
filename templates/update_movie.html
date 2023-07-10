@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Movie - MovieWeb App</title>
+</head>
+<body>
+    <h1>Update Movie</h1>
+    <form method="POST" action="/users/{{ user_id }}/update_movie/{{ movie['id'] }}">
+        <label for="new_rating">New Rating:</label>
+        <input type="text" id="new_rating" name="new_rating" value="{{ movie['rating'] }}" required><br><br>
+
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" value="{{ movie['title'] }}" required><br><br>
+
+        <!-- Include other movie details from OMDb API if needed -->
+
+        <input type="submit" value="Update Movie">
+    </form>
+</body>
+</html>
