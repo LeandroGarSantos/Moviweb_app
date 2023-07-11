@@ -52,3 +52,29 @@ class JSONDataManager:
                 self.save_data(user_id)
                 return
         raise ValueError(f"User with ID {user_id} not found.")
+
+    def delete_movie(self, user_id, movie_title):
+        users = self.get_all_users()
+
+        for user in users:
+            if user['id'] == user_id:
+                movies = user['movies']
+                for movie in movies:
+                    if movie['Title'] == movie_title:
+                        movies.remove(movie)
+                        self.save_data(users)
+                        return
+
+    def update_movie_rating(self, user_id, movie_id, new_rating):
+        users = self.get_all_users()
+
+        for user in users:
+            if user['id'] == user_id:
+                movies = user['movies']
+                for movie in movies:
+                    if movie['id'] == movie_id:
+                        movie['Rating'] = new_rating
+                        self.save_data(user_id)
+                        return
+
+        raise ValueError(f"Movie with ID {movie_id} not found for user with ID {user_id}.")

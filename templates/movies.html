@@ -2,14 +2,37 @@
 <html>
 <head>
     <title>Movies - MovieWeb App</title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='Hollywood5.jpg') }}");
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Movies</h1>
-    <ul>
+    <div class="movies-container">
+        <a href="{{ url_for('home') }}" class="button">Back to Home</a>
+        <a href="{{ url_for('list_users') }}" class="button">Back to Users</a>
         {% for movie in movies %}
-            <li>{{ movie['Title'] }} - Rating: {{ movie['Rated'] }} - Movie Poster: <img src="{{ movie['Poster'] }}" alt="Movie Poster"></li>
+        <div class="movie-item">
+            <div class="movie-content">
+                <img src="{{ movie['Poster'] }}" alt="{{ movie['Title'] }} Poster" class="movie-poster">
+                <div class="movie-details">
+                    <h3 class="movie-title">{{ movie['Title'] }}</h3>
+                    <p class="movie-year"><strong>Year:</strong> {{ movie['Year'] }}</p>
+                    <p class="movie-genre movie-info"><strong>Genre:</strong> {{ movie['Genre'] }}</p>
+                    <p class="movie-director movie-info"><strong>Director:</strong> {{ movie['Director'] }}</p>
+                    <form action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie['Title']) }}" method="POST">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                     <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie['id']) }}" class="button-blue">Update</a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>
