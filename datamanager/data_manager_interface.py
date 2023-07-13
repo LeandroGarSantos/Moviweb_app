@@ -34,4 +34,8 @@ class DataManagerInterface(ABC):
     def delete_movie(self, user_id, movie_id):
         pass
 
+    @abstractmethod
+    def update_movie(self, user_id, movie_id, new_title, new_rating):
+        pass
+
     # Add more methods as needed

@@ -202,11 +202,12 @@ def update_movie(user_id, movie_id):
 
         Raises:
             Exception: If an error occurs while updating a movie.
-        """
+    """
     if request.method == 'POST':
         try:
+            new_title = request.form['new_title']
             new_rating = request.form['new_rating']
-            data_manager.update_movie_rating(user_id, movie_id, new_rating)
+            data_manager.update_movie(user_id, movie_id, new_title, new_rating)
             return redirect(url_for('get_user_movies', user_id=user_id))
         except Exception as e:
             # Handle exceptions related to updating a movie
@@ -215,9 +216,9 @@ def update_movie(user_id, movie_id):
 
     try:
         user_movies = data_manager.get_user_movies(user_id)
-        movie = next((movie for movie in user_movies if movie['id'] == movie_id), None)
+        movie = next((movie for movie in user_movies if movie['imdbID'] == movie_id), None)
         if movie:
-            return render_template('update_movie.html', movie=movie)
+            return render_template('update_movie.html', user_id=user_id, movie=movie)
         else:
             return render_template('error.html', error_message="Movie not found.")
     except Exception as e:

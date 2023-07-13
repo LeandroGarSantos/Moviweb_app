@@ -16,7 +16,7 @@
 </head>
 <body>
     <h1>Update Movie</h1>
-    <form method="POST" action="{{ url_for('update_movie', user_id=user_id, movie_id=movie['id']) }}">
+    <form method="POST" action="{{ url_for('update_movie', user_id=user_id, movie_id=movie['imdbID']) }}">
         <label for="new_title">New Title:</label>
         <input type="text" id="new_title" name="new_title" value="{{ movie['Title'] }}" required><br>
         <label for="new_rating">New Rating:</label>

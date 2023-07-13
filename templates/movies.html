@@ -25,10 +25,11 @@
                     <p class="movie-year"><strong>Year:</strong> {{ movie['Year'] }}</p>
                     <p class="movie-genre movie-info"><strong>Genre:</strong> {{ movie['Genre'] }}</p>
                     <p class="movie-director movie-info"><strong>Director:</strong> {{ movie['Director'] }}</p>
+                    <p class="movie-rating movie-info"><strong>Rating:</strong> {{ movie['Rating'] }}</p>
                     <form action="{{ url_for('delete_movie', user_id=user_id, movie_id=movie['Title']) }}" method="POST">
                         <button type="submit" class="delete-button">Delete</button>
                     </form>
-                     <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie['id']) }}" class="button-blue">Update</a>
+                     <a href="{{ url_for('update_movie', user_id=user_id, movie_id=movie['imdbID']) }}" class="button-blue">Update</a>
                 </div>
             </div>
         </div>

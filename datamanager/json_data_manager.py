@@ -78,3 +78,37 @@ class JSONDataManager:
                         return
 
         raise ValueError(f"Movie with ID {movie_id} not found for user with ID {user_id}.")
+
+    def update_movie(self, user_id, movie_id, new_title, new_rating):
+        """
+        Updates the title and rating of a movie in a user's movie list.
+
+        Args:
+            user_id (str): The ID of the user.
+            movie_id (str): The ID of the movie.
+            new_title (str): The new title of the movie.
+            new_rating (str): The new rating of the movie.
+
+        Raises:
+            Exception: If the user or movie is not found.
+        """
+        # Load the data from the JSON file
+        self.load_data()
+
+        # Find the user
+        user = next((user for user in self.data if user['id'] == user_id), None)
+        if user:
+            # Find the movie
+            movie = next((movie for movie in user['movies'] if movie['imdbID'] == movie_id), None)
+            if movie:
+                # Update the movie's title and rating
+                movie['Title'] = new_title
+                movie['Rating'] = new_rating
+
+                # Save the data to the JSON file
+                self.save_data(user_id)
+            else:
+                raise Exception("Movie not found.")
+        else:
+            raise Exception("User not found.")
+

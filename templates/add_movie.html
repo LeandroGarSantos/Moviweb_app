@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-    <a href="{{ url_for('get_user_movies', user_id=user_id) }}" class="back-button">Back to Movies</a>
+    <a href="{{ url_for('get_user_movies', user_id=user_id) }}" class="button">Back to Movies</a>
 <h1>Add Movie</h1>
 <form action="{{ url_for('add_movie', user_id=user_id) }}" method="POST" class="add-movie-form">
   <label for="movie_title">Movie Title:</label>
